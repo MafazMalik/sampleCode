@@ -1,0 +1,22 @@
+<div class="container-fluid bg-black p-5">
+    <div class="container bg-warning text-black p-5 m-5">
+        <div class="border border-3 p-3 border-dark">
+            <h1 class="text-center"><u>Add Mobile Name</u></h1>
+            <div class="border border-3 p-3 border-dark">
+                <div class="form-group text-center">
+                    <h2><u>Add Model</u></h2>
+                    <input type="text" class="form-control border-dark" [(ngModel)]="addNew">
+                    <button class="btn btn-dark mt-3" (click)="addNewList()">Add</button>
+                </div>
+            </div>
+            <ul style="margin-left: 45%;margin-top: 20px;">
+                <li *ngFor="let phone of mobileList">
+                    {{phone}}
+                </li>
+            </ul>
+            <ul *ngFor="let newItems of mobileListOne">
+                <li>{{newItems.API}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

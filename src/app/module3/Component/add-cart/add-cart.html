@@ -1,0 +1,23 @@
+<div class="container-fluid bg-black p-5">
+    <div class="container bg-dark text-warning text-center p-5 m-5">
+        <h1 class="m-5"><u>ADD TO CART</u></h1>
+        <h3 class="m-5">Cart Item: {{cartNumber}}</h3>
+        <div class="m-5">
+            <button class="btn btn-success m-5" (click)="cartIncreament()" [disabled]="cartNumber==10">Add</button>
+            <button class="btn btn-danger m-5" (click)="cartDecreament()" [disabled]="cartNumber==0">Remove</button>
+        </div>
+        <div>
+            <p *ngIf="cartNumber==10 else minimumCart">You have reached maximum cart</p>
+
+            <ng-template #minimumCart>
+                <div *ngIf="cartNumber==0">Please add atleast one to cart</div>
+            </ng-template>
+        </div>
+        <p>{{oneVar.disclaimer}}</p>
+
+        <button class="btn btn-secondary" (click)="simpleAlert()">Simple Alert</button>
+        <button class="btn btn-secondary" (click)="alertWithSuccess()">Alert with Success</button>
+        <button class="btn btn-secondary" (click)="confirmBox()">Confirm Box</button>
+
+    </div>
+</div>

@@ -1,0 +1,221 @@
+<div class="bg-dark text-white pt-5 pb-5">
+    <br><br>
+
+    <form [formGroup]="sampleForm" (ngSubmit)="updatePls()">
+
+        <!-- Input type text -->
+
+        <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <input type="Name" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
+                placeholder="Enter Name" formControlName="userName">
+            <p *ngIf="sampleForm.controls.userName.errors" class="alert alert-danger">Please enter the name</p>
+            <p *ngIf="sampleForm.controls.userName.errors?.['minlength']" class="alert alert-danger">Please enter the
+                minimum character</p>
+        </div>
+
+        <br>
+
+        <!-- Email -->
+
+        <div class="form-group">
+            <label for="exampleInputEmail">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter Email"
+                formControlName="userMail">
+            <p *ngIf="sampleForm.controls.userMail.errors?.['required']" class="alert alert-danger">Please enter email
+            </p>
+            <p *ngIf="sampleForm.controls.userMail.errors?.['email']" class="alert alert-danger">Please enter valid
+                email</p>
+        </div>
+
+        <br>
+
+        <!-- Check Box -->
+
+        <div class="form-group">
+            <P>Please select your course</P>
+            <div class="ms-5">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="yourCourse" value="HTML">
+                    <label class="form-check-label" for="check1">HTML</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="yourCourse" value="CSS">
+                    <label class="form-check-label" for="check1">CSS</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="yourCourse" value="Bootstrap">
+                    <label class="form-check-label" for="check1">Bootstrap</label>
+                </div>
+            </div>
+            <p *ngIf="sampleForm.controls.yourCourse.errors?.['required']" class="alert alert-danger">Please select your
+                course</p>
+            {{sampleForm.controls.yourCourse.errors|json}}
+        </div>
+
+        <br>
+
+        <!-- Text Area -->
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Give Feedback</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Feedback" rows="3"
+                formControlName="feedBack"></textarea>
+            <p *ngIf="sampleForm.controls.feedBack.errors" class="alert alert-danger">Please give your Feedback</p>
+        </div>
+
+        <br>
+
+        <!-- Choose File -->
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload your file</label>
+            <input class="form-control" type="file" id="formFile" formControlName="uploadFile">
+            <p *ngIf="sampleForm.controls.uploadFile.errors" class="alert alert-danger">Please choose your file</p>
+        </div>
+
+        <br>
+
+        <!-- password -->
+
+        <div class="mb-3">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Enter your password"
+                formControlName="passwordNew">
+            <p *ngIf="sampleForm.controls.passwordNew.errors?.['required']" class="alert alert-danger">Please enter
+                password</p>
+            <p *ngIf="sampleForm.controls.passwordNew.errors?.['pattern']" class="alert alert-danger">Please enter valid
+                password ("\{{'^[a-z0-9_-]\{8,15\}$'}}"(minimum give 8 character & maximum 15 character using atleast
+                one small letter and numbers))</p>
+        </div>
+
+        <br>
+
+        <!-- confirm password -->
+
+        <div class="mb-3">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Enter your password"
+                formControlName="confirmPasswordNew" (blur)="checkPass()">
+            <p *ngIf="sampleForm.controls.confirmPasswordNew.errors?.['required']" class="alert alert-danger">Confirm
+                your
+                password</p>
+            <p *ngIf="sampleForm.controls.confirmPasswordNew.errors?.['pattern']" class="alert alert-danger">Please
+                enter valid
+                password ("\{{'^[a-z0-9_-]\{8,15\}$'}}"(minimum give 8 character & maximum 15 character using atleast
+                one small letter and numbers))</p>
+            <p *ngIf="!checking && sampleForm.controls.confirmPasswordNew.touched" class="alert alert-danger">Confirm
+                your valid password</p>
+        </div>
+
+        <br>
+
+        <!-- Radio -->
+
+        <p>Choose your Degree</p>
+        <div class="ms-5">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="radioButton" value="B.Sc">
+                <label class="form-check-label" for="flexRadioDefault1">B.Sc</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="radioButton" value="M.Sc">
+                <label class="form-check-label" for="flexRadioDefault1">M.Sc</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="radioButton" value="B.E">
+                <label class="form-check-label" for="flexRadioDefault1">B.E</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="radioButton" value="M.E">
+                <label class="form-check-label" for="flexRadioDefault1">M.E</label>
+            </div>
+        </div>
+        <p *ngIf="sampleForm.controls.radioButton.errors?.['required']" class="alert alert-danger">Please choose the
+            degree</p>
+
+        <!-- Turn Button -->
+
+        <p>Please turn your mode</p>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" formControlName="switchOn">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Turn on night mode</label>
+        </div>
+        <p *ngIf="sampleForm.controls.switchOn.errors?.['required']" class="alert alert-danger">Please Turn your switch
+        </p>
+
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
+                formControlName="switchoff">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Turn off night mode</label>
+        </div>
+        <p *ngIf="sampleForm.controls.switchoff.errors?.['required']" class="alert alert-danger">Please Turn your switch
+        </p>
+
+        <br>
+
+        <!-- Select Item -->
+
+        <p>Select your department</p>
+        <select class="form-select" aria-label="Default select example" formControlName="dropDown">
+            <option value="1">Computer Science</option>
+            <option value="2">Information Technology</option>
+            <option value="3">Computer Application</option>
+        </select>
+        <p *ngIf="sampleForm.controls.dropDown.errors?.['required']" class="alert alert-danger">Please choose your
+            department</p>
+
+        <br>
+
+        <!-- Color -->
+
+        <label for="exampleColorInput" class="form-label">Choose your Favorite color</label>
+        <input type="color" class="form-control form-control-color" formControlName="yourColor">
+        <p *ngIf="sampleForm.controls.yourColor.errors?.['required']" class="alert alert-danger">Please choose your
+            color</p>
+
+        <br>
+
+        <!-- Date of Birth -->
+
+        <div class="form-group">
+            <label for="birthday">Choose your Date of Birth</label>
+            <input type="date" id="birthday" class="form-control" formControlName="bDay">
+            <p *ngIf="sampleForm.controls.bDay.errors?.['required']" class="alert alert-danger">Please choose your DOB
+            </p>
+        </div>
+
+        <br>
+
+        <!-- Phone Number -->
+
+        <div class="form-group mt-2">
+            <label for="exampleMobileNumber">Enter your Mobile Number</label>
+            <input type="text" class="form-control" id="ec-mobile-number" formControlName="phnNum">
+            <p *ngIf="sampleForm.controls.phnNum.errors?.['required']" class="alert alert-danger">Please enter your
+                Phone number</p>
+            <p *ngIf="sampleForm.controls.phnNum.errors?.['maxlength']" class="alert alert-danger">Please enter your
+                valid MobileNumber</p>
+        </div>
+
+        <br>
+
+        <!-- Time -->
+
+        <div class="cs-form">
+            <label for="exampleTime">Enter your wake up time</label>
+            <input type="time" class="form-control" formControlName="wakeTime">
+            <p *ngIf="sampleForm.controls.wakeTime.errors?.['required']" class="alert alert-danger">Please choose your
+                wakeTime</p>
+        </div>
+
+        <br>
+
+        <!-- Button -->
+
+        <button type="submit" class="btn btn-primary" [disabled]="sampleForm.invalid">Submit</button>
+
+    </form>
+</div>
